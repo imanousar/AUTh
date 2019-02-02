@@ -1,0 +1,35 @@
+; Recursive implemantation of fibonacci in assembly avr language.
+
+.include "m16def.inc"
+
+.cseg
+
+ldi r16,low(ramend)
+out spl,r16
+ldi r16,high(ramend)
+out sph,r16
+
+ldi r16,4
+
+
+fib:
+	cpi r16,2
+	brlo ret_1
+	
+	subi r16,1
+	push r16
+	rcall fib ;call fib(n-1)
+
+	pop r16
+	push r21
+	subi r16,1
+	rcall fib ;call fib(n-2)
+
+	pop r20
+	add r21,r20
+	ret
+	
+
+ret_1:
+	ldi r21,1 ;fib(0)=fib(1)=1
+	ret

@@ -1,0 +1,56 @@
+;shift right N bytes saved in SRAM
+
+.include "m16def.inc"
+
+
+.dseg
+        digit:  .byte 4
+.cseg
+
+.def len=r16
+.def help=r18
+.def shifts=r17
+.def tmp=r20
+
+.org    0x0000
+;======= Store To SRAM ==================
+    ldi     XH, HIGH(digit)
+    ldi     XL, Low(digit)
+    ldi     R16, 0b10001000   ; Digit 0
+    st      X+, R16
+    ldi     R16, 0b11110000   ; Digit 1
+    st      X+, r16
+    ldi     R16, 0b00001100   ; Digit 2
+    st      X+, r16
+	ldi     R16, 0b00111100   ; Digit 2
+    st      X+, r16
+
+clr xl clr xh clr len clr help clr shifts clr tmp
+;======================================		
+ldi len,4
+ldi shifts,3
+
+start:
+	ldi xl,low(digit) ldi xh,high(digit)
+	ld tmp,x
+	clc
+	tst shifts
+	breq exit
+	dec shifts
+	mov help,len
+	tst help
+	breq exit
+	dec help
+	lsr tmp
+	st X+,tmp
+bitsn_1:
+	ld tmp,x
+	cpi help,0
+	breq start
+	dec help
+	ror tmp
+	st X+,tmp
+	rjmp bitsn_1		
+
+exit:
+	ret

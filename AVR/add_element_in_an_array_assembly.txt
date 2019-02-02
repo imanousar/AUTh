@@ -1,0 +1,64 @@
+;Check the elemements of an existing unorderd array and insert an element if it doesn't exists.
+
+.include "m16def.inc"
+
+
+.dseg
+        digit:  .byte 9 ; Segment Digit
+		len: .byte 1
+.cseg
+
+.def length=r18
+.def input=r19
+.def table=r17
+.def tmp=r20
+
+.org    0x0000
+;======= Store To SRAM ==================
+    ldi     XH, HIGH(digit)
+    ldi     XL, Low(digit)
+    ldi     R16, 10           ; Digit 0
+    st      X+, R16
+    ldi     R16, 20           ; Digit 1
+    st      X+, r16
+    ldi     R16, 30           ; Digit 2
+    st      X+, r16
+	ldi yh,high(len)
+	ldi yl,low(len)
+	ldi R16,3
+	st Y, R16
+;======================================		
+
+	ldi input,12
+	clr yl clr yh clr xl clr xh 
+    ldi     XH, HIGH(digit)
+    ldi     XL, Low(digit)
+	ldi yh,high(len)
+	ldi yl,low(len)
+	ld length,y
+	mov tmp, length
+loop:
+	tst length 
+	breq insert
+	
+	ld r17,x+
+	cp input, table
+	breq exit
+	dec length
+	rjmp loop
+
+
+insert: 
+	mov length,tmp
+	inc length
+	st x,input
+
+exit:
+	rjmp exit
+
+
+
+	
+	
+
+

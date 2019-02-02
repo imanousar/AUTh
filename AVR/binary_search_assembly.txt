@@ -1,0 +1,124 @@
+; Implemantation of binary search algorithm. 
+; In this example:
+;
+; We are searching for number 1 (find) int this array (digit).
+; _________________________________________________
+;| 1| 3 | 5 | 6 | 9 | 10 | 13 | 15 | 21 | 23 | 24 |
+;|__|___|___|___|___|____|____|____|____|____|____|
+; 
+
+.include "m16def.inc"
+
+
+.dseg
+        digit:  .byte 11; Segment Digit
+		len: .byte 1
+.cseg
+.org    0x0000
+.def N=r18
+.def find=r19
+.def testval=r20
+.def count=r21
+.def increment=r17
+
+ldi r16,low(ramend)
+out spl,r16
+ldi r16,high(ramend)
+out sph,r16
+
+
+
+
+;======= Store To SRAM ==================
+    ldi     XH, HIGH(digit)
+    ldi     XL, Low(digit)
+    ldi     R16, 1          ; Digit 0
+    st      X+, R16
+    ldi     R16, 3           ; Digit 1
+    st      X+, r16
+    ldi     R16, 5           ; Digit 2
+    st      X+, r16
+	ldi     R16, 6          ; Digit 3
+    st      X+, R16
+    ldi     R16, 9           ; Digit 4
+    st      X+, r16
+    ldi     R16, 10          ; Digit 5
+    st      X+, r16
+	
+    ldi     R16, 13          ; Digit 6
+    st      X+, r16
+	
+    ldi     R16, 15          ; Digit 7
+    st      X+, r16
+	
+    ldi     R16, 21          ; Digit 8
+    st      X+, r16
+	
+    ldi     R16, 23          ; Digit 9
+    st      X+, r16
+
+	ldi     R16, 24          ; Digit 10
+    st      X+, r16
+
+	ldi yh,high(len)
+	ldi yl,low(len)
+	ldi R16,11
+	st Y, R16
+;======================================		
+	ldi find, 1
+
+	clr yl clr yh clr xl clr xh 
+    ldi yh,high(len)
+	ldi yl,low(len)
+	ld N,Y
+	
+	
+    ldi xh,high(digit)
+	ldi xl,low(digit)
+ 	mov count,N
+	lsr count
+	lsr N
+	
+
+	add XL,N
+	brcc loop
+	inc XH
+
+loop:	
+	cpi count,0
+	breq not_found
+
+	ld testval,X
+	cp find,testval
+	breq found
+	brlo lower
+	
+	greater:	
+	inc N	
+	lsr N
+	
+
+	add XL,N
+	dec count
+	brcc loop
+	inc XH
+	rjmp loop
+
+
+	lower:
+	inc N
+	lsr N
+	
+	
+	sub XL,N
+	dec count
+	brcc loop
+	dec XH
+	rjmp loop	
+
+	found:
+		set	
+
+not_found:
+	
+sev

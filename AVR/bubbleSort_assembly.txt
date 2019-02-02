@@ -1,0 +1,104 @@
+; Implemantation of bubblesort algorithm
+;  
+;  Pseudocode
+;
+;  for(i=0 to N-1) 
+;    for(j=0 to N-i-1; j++) 
+;       if ( A > B) 
+;        { 
+;           swap(A,B); 
+;        } 
+;     
+;
+; We are sorting the following array, which is named digit and is stored in SRAM, in ascending order.
+; ______________________
+;| 3| 2 | 5 | 9 | 1 | 8 |
+;|__|___|___|___|___|___|
+; 
+
+
+.include "m16def.inc"
+
+
+.dseg
+        digit:  .byte 6 ; Segment Digit
+	len: .byte 1
+.cseg
+.org    0x0000
+.def N=r18
+.def M=r19
+.def A=r20
+.def B=r21
+.def count_M=r22
+.def save_N=r23
+
+
+.MACRO swap_values 
+	st Y,@0
+	sbiw Y,1
+	st Y,@1
+	adiw Y,1
+
+.ENDMACRO
+
+;Initialize stack pointer
+
+ldi r16,low(ramend)
+out spl,r16
+ldi r16,high(ramend)
+out sph,r16
+
+
+
+;======= Store To SRAM ==================
+    ldi     XH, HIGH(digit)
+    ldi     XL, Low(digit)
+    ldi     R16, 3            ; Digit 0
+    st      X+, R16
+    ldi     R16, 2           ; Digit 1
+    st      X+, r16
+    ldi     R16, 5           ; Digit 2
+    st      X+, r16
+	ldi     R16, 9          ; Digit 3
+    st      X+, R16
+    ldi     R16, 1           ; Digit 4
+    st      X+, r16
+    ldi     R16, 8           ; Digit 5
+    st      X+, r16
+	
+	ldi yh,high(len)
+	ldi yl,low(len)
+	ldi R16,6
+	st Y, R16
+;======================================		
+
+	clr yl clr yh clr xl clr xh 
+    	ldi yh,high(len)
+	ldi yl,low(len)
+	ld N,y
+	clr count_M
+	mov save_N, N
+	clr M
+loop_1:
+	mov M,save_N
+	sub M,count_M
+	ldi     yh, HIGH(digit)
+	ldi     yl, Low(digit)
+	cpi N,1
+	breq exit
+	inc count_M
+loop_2:
+	ld A,Y+
+	ld B,Y
+	cp A,B
+	brlo skip_swap
+	swap_values A, B
+	skip_swap:
+	dec M
+	brne loop_2
+
+	dec N
+	brne loop_1
+
+	
+exit:

@@ -1,0 +1,39 @@
+; Implemantation of factorial algorithm in assembly avr.
+;
+; Factorial f(n)= n* f(n-1)  
+;
+
+.include "m16def.inc"
+
+.cseg
+
+
+ldi r16,low(ramend)
+out spl,r16
+ldi r16,high(ramend)
+out sph,r16
+
+
+
+ldi r16,5
+
+
+factorial:
+		tst r16
+		breq ret_1 ; if n=0 go  to ret_1
+	
+		push r16
+		dec r16
+		rcall factorial  ; call factorial(n-1)
+	
+		pop r16
+		mul r20,r16
+		mov r20,r0    ; store factorial in R20
+
+		ret
+
+ret_1:			; factrorial(0) = 1
+	ldi r20,1
+	ret
+
+

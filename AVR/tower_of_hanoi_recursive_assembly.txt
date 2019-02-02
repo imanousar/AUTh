@@ -1,0 +1,35 @@
+; Recursive implemantation of Towers of Hanoi algorithm in assembly avr language.
+;
+; F(n) = 2 * F(n-1) +1 
+
+.include "m16def.inc"
+
+.cseg
+
+ldi r16,low(ramend)
+out spl,r16
+ldi r16,high(ramend)
+out sph,r16
+
+ldi one,1
+ldi r16,4
+
+hanoi:
+	cpi r16,1
+	breq ret_1
+ 	cpi r16,0
+	breq error
+
+	subi r16,1
+	rcall hanoi
+	
+	lsl r16
+	inc r16
+
+	ret	
+
+ret_1:
+	ldi r16,1
+	ret
+error:
+	; error

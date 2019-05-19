@@ -4,6 +4,6 @@
 
 - Download the source file
 - Install the libraries in Arduino IDE
-- Use Arduino to run the program
+- Use Arduino IDE to run the program
 
 

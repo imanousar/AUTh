@@ -353,7 +353,7 @@ void sendData() {
       {
         Serial.println("sendtoWait Successful");
         success = success + 1;
-        number_of_bytes = number_of_bytes + current_numbe+r_of_bytes;
+        number_of_bytes = number_of_bytes + current_number_of_bytes;
         flag_ALOHA_SUCCESS = 1;
       }
       if (flag_ALOHA_SUCCESS == 0)

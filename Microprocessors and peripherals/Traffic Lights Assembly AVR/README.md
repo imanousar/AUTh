@@ -1,6 +1,6 @@
 # Traffic Lights
 
-Lab exercise for controlling Traffic Lights in an intersection.
+Lab exercise for controlling Traffic Lights of an intersection.
 
 <br>
 <br>

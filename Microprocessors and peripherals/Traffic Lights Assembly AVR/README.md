@@ -1,6 +1,6 @@
 # Traffic Lights
 
-Lab exercise for controlling Traffic Lights of an intersection.
+Lab exercise for controlling Traffic Lights of an intersection with STK500 in Assembly.
 
 <br>
 <br>

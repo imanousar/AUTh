@@ -1,1 +1,1 @@
-# AUTh Projects
+# University Projects

@@ -1,4 +1,5 @@
 # University Projects - 👨‍🎓
+[![Version](https://img.shields.io/badge/version-0.1.0-yellow.svg)](https://bitbucket.org/lbesson/ansi-colors)
 
 Below you can find the projects that I have written during my studies at the Aristotle University of Thessaloniki, 
 [Department of Electronical and Computer Engineering](http://ee.auth.gr/en) 🖥️. 
@@ -15,3 +16,11 @@ Below you can find the projects that I have written during my studies at the Ari
 |[Pattern Recognition Quizzes](https://github.com/imanousar/University_Projects/tree/master/Pattern%20Recognition)|R|
 |[C-shell](https://github.com/imanousar/C-Shell)|C|
 |[Operating Systens Quizzes](https://github.com/imanousar/University_Projects/tree/master/Operating%20Systems)|bash, C|
+
+<br>
+
+---
+
+## Licenses
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mpalaourg/FuzzySystems_Classification/blob/master/LICENSE)

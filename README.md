@@ -3,11 +3,6 @@
 Below you can find the projects that I have written during my studies at the Aristotle University of Thessaloniki, 
 [Department of Electronical and Computer Engineering](http://ee.auth.gr/en) 🖥️. 
 
-# University Projects - 👨‍🎓
-
-Below you can find the projects that I have written during my studies at the Aristotle University of Thessaloniki, 
-[Department of Electronical and Computer Engineering](http://ee.auth.gr/en) 🖥️. 
-
 <br>
 
 | Course  |  Language(s) |
@@ -17,5 +12,5 @@ Below you can find the projects that I have written during my studies at the Ari
 |[Wireless Sensor Network](https://github.com/imanousar/University_Projects/tree/master/Wireless%20Sensor%20Network)|C++|
 |[Software Engineering](https://github.com/imanousar/University_Projects/tree/master/Software%20Engineering)|Tex|
 |[AppliedMathematics](https://github.com/imanousar/University_Projects/tree/master/AppliedMathematics)|Tex|
-|[Pattern Recognition](https://github.com/imanousar/University_Projects/tree/master/Pattern%20Recognition)|R|
+|[Pattern Recognition Quizzes](https://github.com/imanousar/University_Projects/tree/master/Pattern%20Recognition)|R|
 |[C-shell](https://github.com/imanousar/C-Shell)|C|

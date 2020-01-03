@@ -15,6 +15,8 @@ Below you can find the projects that I have written during my studies at the Ari
 |[AppliedMathematics](https://github.com/imanousar/University_Projects/tree/master/AppliedMathematics)|Tex|
 |[Pattern Recognition Quizzes](https://github.com/imanousar/University_Projects/tree/master/Pattern%20Recognition)|R|
 |[C-shell](https://github.com/imanousar/C-Shell)|C|
+|[Databases](https://github.com/imanousar/GitInsightsDB)|MySQL, Python(Django),
+|                                                       |HTML , CSS, Bootstrap|
 |[Operating Systems Quizzes](https://github.com/imanousar/University_Projects/tree/master/Operating%20Systems)|bash, C|
 
 <br>

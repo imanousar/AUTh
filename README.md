@@ -24,4 +24,4 @@ Below you can find the projects that I have written during my studies at the Ari
 
 ## Licenses
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/mpalaourg/FuzzySystems_Classification/blob/master/LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/imanousar/University-Projects/blob/master/LICENSE)

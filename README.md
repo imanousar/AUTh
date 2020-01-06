@@ -18,6 +18,8 @@ Below you can find the projects that I have written during my studies at the Ari
 |[Databases](https://github.com/imanousar/GitInsightsDB)|MySQL, Python(Django), HTML , CSS, Bootstrap|
 |[Operating Systems Quizzes](https://github.com/imanousar/University_Projects/tree/master/Operating%20Systems)|bash, C|
 |[Security](https://github.com/imanousar/University_Projects/tree/master/Security)| Tex | Matlab |
+|[Fuzzy Systems](https://github.com/imanousar/University_Projects/tree/master/Fuzzy%20Systems)| Matlab|
+
 
 
 <br>

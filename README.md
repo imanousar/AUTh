@@ -20,6 +20,7 @@ Below you can find the projects that I have written during my studies at the Ari
 |[Security](https://github.com/imanousar/University_Projects/tree/master/Security)| Tex | Matlab |
 |[Fuzzy Systems](https://github.com/imanousar/University_Projects/tree/master/Fuzzy%20Systems)| Matlab|
 |[Bioengineering](https://github.com/imanousar/University_Projects/tree/master/Bioengineering)| Tex |
+|[Audio Visual Technology](https://github.com/imanousar/Automatic-Subtitles-Synchronization)| Python|
 
 
 

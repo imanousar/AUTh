@@ -21,7 +21,12 @@ Below you can find the projects that I have written during my studies at the Ari
 |[Fuzzy Systems](https://github.com/imanousar/University_Projects/tree/master/Fuzzy%20Systems)| Matlab|
 |[Bioengineering](https://github.com/imanousar/University_Projects/tree/master/Bioengineering)| Tex |
 |[Audio Visual Technology](https://github.com/imanousar/Automatic-Subtitles-Synchronization)| Python|
-
+|[Real Time Operating Systems (AGH)](https://github.com/imanousar/RTOS)| C|
+|[Pattern Recognition II (AGH) ](https://github.com/imanousar/University_Projects/tree/master/Pattern%20Recognition%20II)| Python| 
+|[Data-Science (AGH)](https://github.com/imanousar/Data-Science)| Python|
+|[Web Application Technologies (AGH)](https://github.com/imanousar/Web-Application-Technologies)| Javascript, HTML, CSS|
+|[CMOS Designing (AGH) ] (https://github.com/imanousar/CMOS-Designing)| - |
+|[Computer Graphics (AGH)] ((https://github.com/imanousar/University_Projects/tree/Computer%20Graphics)| Three.js|
 
 
 <br>

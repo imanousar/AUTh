@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="viewport"></div>
+
+    <script src="three.min.js"></script>
+    <script src="physi.js"></script>
+    <script>
+      var container, scene, renderer, camera, light, ball, plane;
+      var WIDTH, HEIGHT, VIEW_ANGLE, ASPECT, NEAR, FAR;
+
+      var clock = new THREE.Clock();
+
+      Physijs.scripts.worker = "physijs_worker.js";
+      Physijs.scripts.ammo = "ammo.js";
+
+      container = document.querySelector(".viewport");
+
+      (WIDTH = window.innerWidth), (HEIGHT = window.innerHeight);
+
+      (VIEW_ANGLE = 45), (ASPECT = WIDTH / HEIGHT), (NEAR = 1), (FAR = 10000);
+
+      scene = new Physijs.Scene();
+      scene.setGravity(new THREE.Vector3(0, -50, 0));
+      scene.addEventListener("update", function () {
+        scene.simulate(undefined, 2);
+      });
+
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+      });
+
+      renderer.setSize(WIDTH, HEIGHT);
+      renderer.shadowMapEnabled = true;
+      renderer.shadowMapSoft = true;
+      renderer.shadowMapType = THREE.PCFShadowMap;
+      renderer.shadowMapAutoUpdate = true;
+
+      container.appendChild(renderer.domElement);
+
+      camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR);
+
+      camera.position.set(60, 40, 120);
+      camera.lookAt(scene.position);
+      scene.add(camera);
+
+      light = new THREE.DirectionalLight(0xffffff);
+
+      light.position.set(0, 100, 60);
+      light.castShadow = true;
+      light.shadowCameraLeft = -60;
+      light.shadowCameraTop = -60;
+      light.shadowCameraRight = 60;
+      light.shadowCameraBottom = 60;
+      light.shadowCameraNear = 1;
+      light.shadowCameraFar = 1000;
+      light.shadowBias = -0.0001;
+      light.shadowMapWidth = light.shadowMapHeight = 1024;
+      light.shadowDarkness = 0.7;
+
+      scene.add(light);
+
+      var y_pos = 20;
+
+      add_borders();
+      addPlane(y_pos);
+
+      function add_borders() {
+        addBorder_x_1();
+        addBorder_x_2();
+        addBorder_y_1();
+        addBorder_y_2();
+      }
+
+      function addBorder_x_1() {
+        plane_1 = new Physijs.BoxMesh(
+          new THREE.CubeGeometry(3, 3, 50),
+          Physijs.createMaterial(
+            new THREE.MeshLambertMaterial({
+              color: 0xffaaee,
+            }),
+            0.1, // medium friction
+            0.99 // low restitution
+          ),
+          0
+        );
+        plane_1.position.set(-24, y_pos - 2, 0);
+        scene.add(plane_1);
+      }
+
+      function addBorder_x_2() {
+        plane_2 = new Physijs.BoxMesh(
+          new THREE.CubeGeometry(3, 3, 50),
+          Physijs.createMaterial(
+            new THREE.MeshLambertMaterial({
+              color: 0xffaaee,
+            }),
+            0.1, // medium friction
+            0.99 // low restitution
+          ),
+          0
+        );
+        plane_2.position.set(24, y_pos - 2, 0);
+        scene.add(plane_2);
+      }
+      function addBorder_y_1() {
+        plane_3 = new Physijs.BoxMesh(
+          new THREE.CubeGeometry(3, 3, 50),
+          Physijs.createMaterial(
+            new THREE.MeshLambertMaterial({
+              color: 0xffaaee,
+            }),
+            0.1, // medium friction
+            0.99 // low restitution
+          ),
+          0
+        );
+
+        plane_3.rotation.y = Math.PI / 2;
+
+        plane_3.position.set(0, y_pos - 2, 24);
+        scene.add(plane_3);
+      }
+
+      function addBorder_y_2(x, y, z) {
+        plane_4 = new Physijs.BoxMesh(
+          new THREE.CubeGeometry(3, 3, 50),
+          Physijs.createMaterial(
+            new THREE.MeshLambertMaterial({
+              color: 0xffaaee,
+            }),
+            0.1, // medium friction
+            0.99 // low restitution
+          ),
+          0
+        );
+
+        plane_4.rotation.y = Math.PI / 2;
+
+        plane_4.position.set(0, y_pos - 2, -24);
+        scene.add(plane_4);
+      }
+
+      function addPlane() {
+        y_pos -= 5;
+
+        plane = new Physijs.BoxMesh(
+          new THREE.CubeGeometry(50, 50, 2, 10, 10),
+          Physijs.createMaterial(
+            new THREE.MeshLambertMaterial({
+              color: 0xffaaee,
+            }),
+            0.1, // medium friction
+            0.99 // low restitution
+          ),
+          0
+        );
+
+        plane.rotation.x = -Math.PI / 2;
+        plane.rotation.y = 0.01; // Math.PI / 24;
+        plane.receiveShadow = true;
+        plane.position.set(0, y_pos, 0);
+        scene.add(plane);
+      }
+
+      setInterval(function () {
+        ball = new Physijs.SphereMesh(
+          new THREE.SphereGeometry(Math.random() * (4 - 1) + 1, 16, 16),
+          Physijs.createMaterial(
+            new THREE.MeshLambertMaterial({
+              color: 0xff0000,
+              reflectivity: 0.8,
+            }),
+            0.3,
+            0.99
+          ),
+          1
+        );
+
+        var r = {
+          x: Math.random() * (Math.PI - Math.PI / 12) + Math.PI / 12,
+          y: Math.random() * (Math.PI - Math.PI / 12) + Math.PI / 12,
+          z: Math.random() * (Math.PI - Math.PI / 12) + Math.PI / 12,
+        };
+
+        ball.rotation.set(r.x, r.y, r.z);
+        ball.position.y = 40;
+        ball.castShadow = true;
+        ball.receiveShadow = true;
+
+        scene.add(ball);
+      }, 400);
+
+      render();
+      scene.simulate();
+
+      var counter = 10;
+      function render() {
+        for (var i = counter; i < scene.children.length - 5; i++) {
+          var obj = scene.children[i];
+
+          removePlanes();
+
+          if (y_pos < -20) {
+            y_pos = 20;
+          }
+          add_borders();
+
+          addPlane();
+          counter += 10;
+        }
+
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+      }
+
+      function removePlanes() {
+        scene.remove(plane);
+        scene.remove(plane_1);
+        scene.remove(plane_2);
+        scene.remove(plane_3);
+        scene.remove(plane_4);
+      }
+    </script>
+  </body>
+</html>

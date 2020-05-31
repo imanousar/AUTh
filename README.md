@@ -26,7 +26,7 @@ Below you can find the projects that I have written during my studies at the Ari
 |[Data-Science (AGH)](https://github.com/imanousar/Data-Science)| Python|
 |[Web Application Technologies (AGH)](https://github.com/imanousar/Web-Application-Technologies)| Javascript, HTML, CSS|
 |[CMOS Designing (AGH)](https://github.com/imanousar/CMOS-Designing)| - |
-|[Computer Graphics (AGH)](https://github.com/imanousar/University_Projects/tree/Computer%20Graphics)| Three.js|
+|[Computer Graphics (AGH)](https://github.com/imanousar/University-Projects/tree/master/Computer%20Graphics)| Three.js|
 
 
 <br>
